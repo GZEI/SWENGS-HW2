@@ -1,0 +1,44 @@
+<table mat-table matTableExporter [dataSource]="sensors" #exporter="matTableExporter" [hiddenColumns]="[5]" >
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let sensor">{{sensor.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let sensor">{{sensor.description}}</td>
+  </ng-container>
+  <ng-container matColumnDef="invalid">
+    <th mat-header-cell *matHeaderCellDef>Invalid</th>
+    <td mat-cell *matCellDef="let sensor">
+      {{sensor.invalid}}
+    </td>
+  </ng-container>
+
+<ng-container matColumnDef="validFrom">
+    <th mat-header-cell *matHeaderCellDef>Valid from</th>
+    <td mat-cell *matCellDef="let sensor">{{sensor.validFrom}}</td>
+  </ng-container>
+  <ng-container matColumnDef="validTo">
+    <th mat-header-cell *matHeaderCellDef>Valid to</th>
+    <td mat-cell *matCellDef="let sensor">{{sensor.validTo}}</td>
+  </ng-container>
+
+
+
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let sensor">
+      <button mat-button [routerLink]="'/sensor-form/' + sensor.id">Edit</button>
+      <button mat-button (click)="deleteSensor(sensor)">Delete</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+  <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'Sensors', sheet: 'Sensors'})">Excel</button>
+  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+  <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
+  <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button>
+<router-outlet></router-outlet>

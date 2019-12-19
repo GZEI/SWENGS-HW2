@@ -1,0 +1,35 @@
+<table mat-table matTableExporter [dataSource]="stations" #exporter="matTableExporter" [hiddenColumns]="[4]">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let station">{{station.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let station">{{station.description}}</td>
+  </ng-container>
+  <ng-container matColumnDef="location">
+    <th mat-header-cell *matHeaderCellDef>Location</th>
+    <td mat-cell *matCellDef="let station">{{station.location}}</td>
+  </ng-container>
+  <ng-container matColumnDef="invalid">
+    <th mat-header-cell *matHeaderCellDef>Invalid</th>
+    <td mat-cell *matCellDef="let station">
+      {{station.invalid}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let station">
+      <button mat-button [routerLink]="'/station-form/' + station.id">Edit</button>
+      <button mat-button (click)="deleteStation(station)">Delete</button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+  <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'Stations', sheet: 'Stations'})">Excel</button>
+  <button mat-raised-button (click)="exporter.exportTable('csv')">Csv</button>
+  <button mat-raised-button (click)="exporter.exportTable('json')">Json</button>
+  <button mat-raised-button (click)="exporter.exportTable('txt')">Txt</button>
+<router-outlet></router-outlet>

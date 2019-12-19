@@ -1,0 +1,15 @@
+<mat-toolbar *ngIf="isLoggedIn">
+  <button mat-button [matMenuTriggerFor]="sensorMenu">Sensors</button>
+  <mat-menu #sensorMenu="matMenu">
+    <button mat-menu-item routerLink="sensor-list">List sensors</button>
+    <button mat-menu-item routerLink="sensor-form">Create sensors</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="stationMenu">Stations</button>
+  <mat-menu #stationMenu="matMenu">
+    <button mat-menu-item routerLink="station-list">List stations</button>
+    <button mat-menu-item routerLink="station-form">Create stations</button>
+  </mat-menu>
+  <app-logout></app-logout>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

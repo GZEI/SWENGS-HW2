@@ -1,0 +1,30 @@
+<form [formGroup]="stationFormGroup" class="station-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" formControlName="name" required>
+    <mat-hint align="end">The name of the station</mat-hint>
+    <mat-error *ngIf="stationFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="location" formControlName="location" required></textarea>
+    <mat-hint align="end">The location of the Station</mat-hint>
+    <mat-error *ngIf="stationFormGroup.controls.location.hasError('required')">location is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="description" formControlName="description" required></textarea>
+    <mat-hint align="end">The description of the Station</mat-hint>
+    <mat-error *ngIf="stationFormGroup.controls.description.hasError('required')">description is required</mat-error>
+  </mat-form-field>
+   <mat-form-field>
+  <mat-label >Station type</mat-label>
+  <mat-select formControlName="category" multiple>
+    <mat-option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+   <mat-checkbox formControlName="invalid">invalid</mat-checkbox>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!stationFormGroup.valid" (click)="createStation()">
+      <span *ngIf="!stationFormGroup.controls.id.value">Create</span>
+      <span *ngIf="stationFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>

@@ -1,0 +1,36 @@
+<form [formGroup]="sensorFormGroup" class="sensor-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" formControlName="name" required>
+    <mat-hint align="end">The name of the sensor</mat-hint>
+    <mat-error *ngIf="sensorFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="description" formControlName="description"></textarea>
+    <mat-hint align="end">The description of the sensor</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sensor type</mat-label>
+    <mat-select formControlName="sensorType" multiple>
+      <mat-option *ngFor="let sensorType of sensorTypeList" [value]="sensorType.id">{{sensorType.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Station" formControlName="station">
+      <mat-option [value]="station.id"
+                  *ngFor="let station of stationList">{{station.name}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The station of the Sensor</mat-hint>
+  </mat-form-field>
+  <app-date placeholder="validFrom" formControlName="validFrom" hint="Sensor valid from"
+            [required]="true"></app-date>
+  <app-date placeholder="validTo" formControlName="validTo" hint="Sensor valid to"
+            [required]="true" ></app-date>
+  <mat-error *ngIf="sensorFormGroup.controls.validTo.hasError('notInFuture')">The valid to date must be in the future</mat-error>
+  <mat-checkbox formControlName="invalid">invalid</mat-checkbox>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!sensorFormGroup.valid" (click)="createSensor()">
+      <span *ngIf="!sensorFormGroup.controls.id.value">Create</span>
+      <span *ngIf="sensorFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
