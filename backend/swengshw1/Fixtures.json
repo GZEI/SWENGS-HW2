@@ -1,0 +1,42 @@
+[{
+  "model": "sensormanager.category",
+  "pk": 1,
+  "fields": {
+    "name": "Official Weather station"
+  }
+},
+{
+  "model": "sensormanager.category",
+  "pk": 2,
+  "fields": {
+    "name": "Environmental measuring station"
+  }
+},
+{
+  "model": "sensormanager.category",
+  "pk": 3,
+  "fields": {
+    "name": "Amateur weather station"
+  }
+},
+{
+  "model": "sensormanager.sensortype",
+  "pk": 1,
+  "fields": {
+    "name": "Temperature"
+  }
+},
+{
+  "model": "sensormanager.sensortype",
+  "pk": 2,
+  "fields": {
+    "name": "Humidity"
+  }
+},
+{
+  "model": "sensormanager.sensortype",
+  "pk": 3,
+  "fields": {
+    "name": "Particulates"
+  }
+}]
