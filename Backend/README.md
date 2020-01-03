@@ -2,7 +2,9 @@
 
 ## Installation
 
-Please install the dependencies django and djangorestframework beforehand.
+Please install the dependencies django and djangorestframework beforehand (requirements.txt).
 
-- Import fixtures
+- Migrate
+- Create superuser
+- Import fixtures 
 - Start development server
